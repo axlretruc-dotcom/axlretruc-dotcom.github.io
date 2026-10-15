@@ -561,7 +561,7 @@ footer a:hover { color: var(--primario); }
 .fondo-niebla::after { animation-duration: 19s; animation-direction: alternate-reverse; opacity: .8; }
 @keyframes niebla-drift { from { transform: translateX(-4%) scale(1); } to { transform: translateX(4%) scale(1.06); } }
 
-/* PAPEL PLEASE — fondo celeste con Sol de Mayo girando */
+/* B.O.L.U.D.O — fondo celeste con Sol de Mayo girando */
 .fondo-sol {
   background:
     radial-gradient(ellipse at 50% 118%, rgba(255,210,74,.30), transparent 55%),

@@ -45,8 +45,8 @@ const CONFIG = {
    ════════════════════════════════════════════════════════════ */
 const JUEGOS = [
   {
-    id: 'papel-please',
-    titulo: 'PAPEL PLEASE',
+    id: 'boludo',
+    titulo: 'B.O.L.U.D.O',
     tagline: 'Aprobá o rechazá el trámite: la patria depende de tu sello (y del mate).',
     generos: ['Simulación', 'Humor', 'Burocracia'],
     plataforma: 'Windows',
