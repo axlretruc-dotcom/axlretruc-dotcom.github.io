@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Reemplazá TU_DOMINIO con tu dirección real (ej:tudominio.github.io)
+Sitemap: https://TU_DOMINIO/sitemap.xml

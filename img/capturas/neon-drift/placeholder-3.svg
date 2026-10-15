@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <defs>
+    <radialGradient id="fondo" cx=".5" cy=".6" r=".8">
+      <stop offset="0" stop-color="#2a0f3d"/>
+      <stop offset="1" stop-color="#0b0614"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#fondo)"/>
+  <path d="M360 225 h80 v-40 l60 65 -60 65 v-40 h-80 z" fill="#ff2fd6"/>
+  <text x="400" y="400" text-anchor="middle" font-family="monospace" font-size="15" fill="#f2e9ff">CAPTURA 3 — reemplazá este archivo</text>
+</svg>

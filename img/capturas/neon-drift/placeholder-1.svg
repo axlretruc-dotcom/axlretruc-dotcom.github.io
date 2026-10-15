@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="fondo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0b0614"/>
+      <stop offset="1" stop-color="#33124d"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#fondo)"/>
+  <g stroke="#ff2fd6" stroke-opacity=".45" stroke-width="1">
+    <path d="M0 300 H800 M0 340 H800 M0 385 H800 M0 435 H800"/>
+    <path d="M100 280 V450 M240 280 V450 M400 280 V450 M560 280 V450 M700 280 V450"/>
+  </g>
+  <circle cx="400" cy="200" r="54" fill="none" stroke="#2ff3ff" stroke-width="3"/>
+  <text x="400" y="207" text-anchor="middle" font-family="monospace" font-size="17" fill="#2ff3ff">NEON DRIFT</text>
+  <text x="400" y="418" text-anchor="middle" font-family="monospace" font-size="15" fill="#f2e9ff">CAPTURA 1 — reemplazá este archivo</text>
+</svg>

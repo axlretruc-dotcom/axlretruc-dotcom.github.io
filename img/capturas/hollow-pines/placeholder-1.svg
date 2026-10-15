@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="fondo" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#0a120a"/>
+      <stop offset="1" stop-color="#152215"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#fondo)"/>
+  <path d="M120 450 V260 q30 -70 60 0 V450 M300 450 V220 q34 -80 68 0 V450 M520 450 V250 q28 -66 56 0 V450 M660 450 V280 q24 -58 48 0 V450" fill="#0f1a0f"/>
+  <ellipse cx="400" cy="440" rx="380" ry="46" fill="#c9d8b0" opacity=".12"/>
+  <text x="400" y="415" text-anchor="middle" font-family="serif" font-size="16" fill="#c9d8b0">CAPTURA 1 — reemplazá este archivo</text>
+</svg>

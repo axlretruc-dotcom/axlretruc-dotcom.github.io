@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- ====== SEO: editá el título y la descripción con tu información ====== -->
+  <title>LUMA GAMES — Juegos indie</title>
+  <meta name="description" content="Portafolio de juegos indie de LUMA GAMES. Cada juego, un mundo distinto. Descargas gratuitas de escritorio.">
+  <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#050507">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles.css">
+  <!-- ====== Open Graph: cuando tengas tu dominio, descomentá y completá ======
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="LUMA GAMES — Juegos indie">
+  <meta property="og:description" content="Portafolio de juegos indie. Cada juego, un mundo distinto.">
+  <meta property="og:image" content="https://tudominio/img/og.png">
+  <meta property="og:url" content="https://tudominio/">
+  ====================================================================== -->
+</head>
+<body class="bloquear-scroll">
+
+  <canvas id="void-canvas" aria-hidden="true"></canvas>
+
+  <!-- ══════════════ SPLASH DE ENTRADA ══════════════ -->
+  <div id="splash" role="button" tabindex="0" aria-label="Entrar al sitio">
+    <div class="splash-titulo" id="splash-titulo">LUMA GAMES</div>
+    <div class="splash-sub">juegos hechos con amor · un género por vez</div>
+    <div class="splash-entrada">— HACÉ CLIC O PRESIONÁ CUALQUIER TECLA PARA ENTRAR —</div>
+  </div>
+
+  <!-- ══════════════ TRANSICIÓN ENTRE SALAS ══════════════ -->
+  <div id="transicion" aria-hidden="true">
+    <div class="trans-linea-1">ENTRANDO A</div>
+    <div class="trans-titulo" id="trans-titulo">—</div>
+    <div class="trans-sub">cargando mundo...</div>
+  </div>
+
+  <!-- ══════════════ NAVBAR ══════════════ -->
+  <nav id="main-navbar" aria-label="Navegación principal">
+    <a id="navbar-marca" href="#" data-ir-home>LUMA GAMES</a>
+    <div id="navbar-enlaces">
+      <button class="navbar-link" data-ir-home data-destacado>INICIO</button>
+      <a class="navbar-link" href="#seccion-sobre">SOBRE</a>
+      <a class="navbar-link" href="#seccion-contacto">CONTACTO</a>
+    </div>
+  </nav>
+
+  <main id="app">
+    <!-- ══════════════ PÁGINA: HOME ══════════════ -->
+    <section class="page active" id="page-home">
+      <div class="home-contenido">
+        <h1 class="home-logo" id="home-logo">LUMA GAMES</h1>
+        <p class="home-tagline" id="home-tagline">Cada juego, un mundo distinto.</p>
+
+        <p class="home-subtitulo">— Elegí un juego —</p>
+        <!-- Los botones de juegos se generan desde el array JUEGOS (app.js) -->
+        <div id="menu-juegos"></div>
+
+        <div class="home-notas">
+          <span id="home-nota-plataforma">DESCARGAS PARA WINDOWS Y LINUX · GRATIS</span><br>
+          USÁ LAS FLECHAS ↑ ↓ Y ENTER PARA NAVEGAR
+        </div>
+      </div>
+
+      <div class="seccion-estatica reveal" id="seccion-sobre">
+        <h2>SOBRE EL ESTUDIO</h2>
+        <p id="sobre-texto"></p>
+      </div>
+
+      <div class="seccion-estatica reveal" id="seccion-contacto">
+        <h2>CONTACTO</h2>
+        <p id="contacto-texto"></p>
+        <ul class="redes-lista" id="redes-lista"></ul>
+      </div>
+    </section>
+
+    <!-- ══════════════ PÁGINA: SALA DEL JUEGO (la renderiza el JS) ══════════════ -->
+    <section class="page" id="page-juego"></section>
+  </main>
+
+  <div id="lightbox" aria-hidden="true"><img id="lightbox-img" alt="Captura ampliada"></div>
+
+  <footer>
+    <span id="footer-texto"></span>
+  </footer>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
