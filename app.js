@@ -5,7 +5,7 @@
 const CONFIG = {
   estudio: 'LUMA GAMES',                              // nombre del estudio
   tagline: 'Cada juego, un mundo distinto.',
-  notaPlataforma: 'DESCARGAS PARA WINDOWS Y LINUX · GRATIS',
+  notaPlataforma: 'WINDOWS · GRATIS · ~4 MB · HECHO CON MATE',
   splashSub: 'juegos hechos con amor · un género por vez',
   sobreTexto: 'Somos un estudio independiente que hace juegos de géneros muy distintos entre sí: ' +
               'si un día es un arcade frenético, al siguiente es una historia tranquila en un bosque. ' +
@@ -45,65 +45,35 @@ const CONFIG = {
    ════════════════════════════════════════════════════════════ */
 const JUEGOS = [
   {
-    id: 'neon-drift',
-    titulo: 'NEON DRIFT',
-    tagline: 'Deslizate por la autopista infinita antes de que el sol sintético se apague.',
-    generos: ['Arcade', 'Carreras', 'Ritmo'],
-    plataforma: 'Windows · Linux',
-    tamano: '~80 MB',
-    descripcion: 'Un arcade de carreras synthwave donde la velocidad es vida. Esquivá tráfico, ' +
-                 'encadená drifts perfectos y bancá la banda sonora mientras la ciudad neón se ' +
-                 'derrite detrás de vos. Una sola carrera, infinitas vueltas, récords para batir.',
-    capturas: [
-      'img/capturas/neon-drift/placeholder-1.svg',
-      'img/capturas/neon-drift/placeholder-2.svg',
-      'img/capturas/neon-drift/placeholder-3.svg'
-    ],
-    requisitos: {
-      min: ['Windows 10 / Ubuntu 20.04', '4 GB de RAM', 'GPU con soporte WebGL', '500 MB de espacio'],
-      rec: ['Windows 11', '8 GB de RAM', 'GPU dedicada', 'auriculares (para el ritmo)']
-    },
-    tema: {
-      fondoClase: 'fondo-grid',
-      colores: {
-        fondo: '#0b0614', primario: '#ff2fd6', acento: '#2ff3ff',
-        texto: '#f2e9ff', borde: 'rgba(255,47,214,.85)'
-      },
-      fuentes: {
-        titulo: "'Trebuchet MS', 'Segoe UI', sans-serif",
-        cuerpo: "'Segoe UI', system-ui, sans-serif"
-      }
-    }
-  },
-  {
-    id: 'hollow-pines',
-    titulo: 'HOLLOW PINES',
-    tagline: 'Un pueblo olvidado, un bosque que respira y una linterna que se apaga despacio.',
-    generos: ['Terror', 'Aventura', 'Exploración'],
+    id: 'papel-please',
+    titulo: 'PAPEL PLEASE',
+    tagline: 'Aprobá o rechazá el trámite: la patria depende de tu sello (y del mate).',
+    generos: ['Simulación', 'Humor', 'Burocracia'],
     plataforma: 'Windows',
-    tamano: '~150 MB',
-    descripcion: 'Terror atmosférico sin jumpscares: explorá las Hollow Pines de noche, hablá con ' +
-                 'sus últimos habitantes y descubrí por qué el camino del bosque siempre te devuelve ' +
-                 'al mismo lugar. Historia lineal, ~2 horas, con final dependiente de tus decisiones.',
-    capturas: [
-      'img/capturas/hollow-pines/placeholder-1.svg',
-      'img/capturas/hollow-pines/placeholder-2.svg',
-      'img/capturas/hollow-pines/placeholder-3.svg'
-    ],
+    tamano: '~4 MB',
+    descripcion: 'Montevideo, una oficina que no figura en ningún organigrama. Sos el último funcionario ' +
+                 'con sello disponible y tenés que decidir quién pasa: el compadre con el papelito en regla, ' +
+                 'el ministerio que perdió los papeles otra vez, o el tipo que solo trajo un mate y buenas ' +
+                 'intenciones. Un simulador burocrático de humor ultra uruguayo: trámites imposibles, ' +
+                 'política en dosis homeopáticas y decisiones que cambian el destino de la República... ' +
+                 'o por lo menos tu jubilación. Hecho con LÖVE, amor y probablemente fernet.',
     requisitos: {
-      min: ['Windows 10', '4 GB de RAM', 'DirectX 11', 'auriculares recomendados'],
-      rec: ['Windows 11', '8 GB de RAM', 'SSD']
+      min: ['Windows 7 o superior', 'Cualquier PC de la feria', '400 MB de espacio libre'],
+      rec: ['Mate (opcional pero muy recomendado)', 'Un sello con tinta real para la inmersión total']
     },
-    build: { url: CONFIG.buildPorDefecto, etiqueta: 'DESCARGAR DEMO GRATIS' },
+    build: {
+      url: 'https://github.com/axlretruc-dotcom/axlretruc-dotcom.github.io/raw/main/descargas/B.O.L.U.D.O.zip',
+      etiqueta: 'DESCARGAR B.O.L.U.D.O'
+    },
     tema: {
-      fondoClase: 'fondo-niebla',
+      fondoClase: 'fondo-sol',
       colores: {
-        fondo: '#0a120a', primario: '#c9d8b0', acento: '#ffa33c',
-        texto: '#e6e9dd', borde: 'rgba(160,190,130,.8)'
+        fondo: '#061226', primario: '#e9f3ff', acento: '#ffd24a',
+        texto: '#dce9f7', borde: 'rgba(255,210,74,.85)'
       },
       fuentes: {
         titulo: "Georgia, 'Times New Roman', serif",
-        cuerpo: "Georgia, 'Times New Roman', serif"
+        cuerpo: "'Segoe UI', system-ui, sans-serif"
       }
     }
   }
@@ -149,6 +119,7 @@ function entrarAlSitio() {
   splashListo = true;
   initAudio();
   sndSelect();
+  iniciarMusica();
   splash.style.transition = 'opacity .7s ease';
   splash.style.opacity = '0';
   document.body.classList.remove('bloquear-scroll');
@@ -162,6 +133,95 @@ splash.addEventListener('keydown', (e) => {
 window.addEventListener('keydown', (e) => {
   if (!splashListo) { entrarAlSitio(); e.preventDefault(); }
 });
+
+/* ════════════════════════════════════════════════════════════
+   4b) MÚSICA DE FONDO — loop procedural estilo "cumbia
+   burocrática" (sin archivos de audio). Se crea el AudioContext
+   recién cuando el usuario entra (regla de autoplay de browsers).
+   ════════════════════════════════════════════════════════════ */
+let musicaGain = null;
+let musTimer = null;
+let proximaVuelta = 0;
+let musicaActiva = localStorage.getItem('musica') !== 'off';
+const DUR_NEGRA = 0.42;                    // ~143 BPM
+const DUR_LOOP = DUR_NEGRA * 16;           // 4 compases de 4/4
+const VOL_MUSICA = 0.16;
+
+function midiAHz(m) { return 440 * Math.pow(2, (m - 69) / 12); }
+
+function programarVuelta(t0) {
+  if (!audioCtx || !musicaGain) return;
+
+  const nota = (t, midi, dur, tipo, vol) => {
+    const osc = audioCtx.createOscillator();
+    const g = audioCtx.createGain();
+    osc.type = tipo;
+    osc.frequency.value = midiAHz(midi);
+    g.gain.setValueAtTime(vol, t);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    osc.connect(g).connect(musicaGain);
+    osc.start(t);
+    osc.stop(t + dur + 0.03);
+  };
+  const bombo = (t) => {
+    const osc = audioCtx.createOscillator();
+    const g = audioCtx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(150, t);
+    osc.frequency.exponentialRampToValueAtTime(45, t + 0.14);
+    g.gain.setValueAtTime(0.55, t);
+    g.gain.exponentialRampToValueAtTime(0.0001, t + 0.16);
+    osc.connect(g).connect(musicaGain);
+    osc.start(t);
+    osc.stop(t + 0.2);
+  };
+  const b = (i) => t0 + i * DUR_NEGRA;
+
+  // bombo con ritmo de cumbia
+  [0, 3, 6, 8, 11, 14].forEach(i => bombo(b(i)));
+  // chasquidos en los offbeats
+  [2, 5, 10, 13, 15].forEach(i => nota(b(i), 90, 0.05, 'triangle', 0.13));
+  // bajo sincopado A2 / E3
+  [[0,45],[1.5,45],[3,45],[4,52],[5.5,52],[7,45],
+   [8,45],[9.5,45],[11,45],[12,52],[13.5,52],[15,52]]
+    .forEach(([i, m]) => nota(b(i), m, 0.30, 'triangle', 0.34));
+  // melodía "acordeón" bizarra
+  [[0,69],[1,72],[2,76],[4,74],[6,72],[8,69],[9,67],[10,69],
+   [12,71],[13,72],[14,76],[15,74]]
+    .forEach(([i, m]) => nota(b(i), m, 0.22, 'square', 0.10));
+}
+
+function tickMusica() {
+  if (!audioCtx || !musicaGain) return;
+  const ahora = audioCtx.currentTime;
+  if (proximaVuelta < ahora) proximaVuelta = ahora + 0.06;
+  while (proximaVuelta < ahora + 1.2) {
+    programarVuelta(proximaVuelta);
+    proximaVuelta += DUR_LOOP;
+  }
+}
+
+function iniciarMusica() {
+  if (!audioCtx) return;
+  if (!musicaGain) {
+    musicaGain = audioCtx.createGain();
+    musicaGain.gain.value = musicaActiva ? VOL_MUSICA : 0.0001;
+    musicaGain.connect(audioCtx.destination);
+  }
+  if (musTimer === null) musTimer = setInterval(tickMusica, 300);
+  tickMusica();
+}
+
+function alternarMusica() {
+  musicaActiva = !musicaActiva;
+  localStorage.setItem('musica', musicaActiva ? 'on' : 'off');
+  if (musicaGain && audioCtx) {
+    musicaGain.gain.setTargetAtTime(musicaActiva ? VOL_MUSICA : 0.0001, audioCtx.currentTime, 0.15);
+  }
+  const btn = document.getElementById('btn-musica');
+  if (btn) btn.textContent = musicaActiva ? '🔊 MÚSICA' : '🔇 MÚSICA';
+}
+
 
 /* ════════════════════════════════════════════════════════════
    5) FONDO DE ESTRELLAS (canvas) + APLICAR TEMA POR JUEGO
@@ -416,6 +476,16 @@ Object.entries(CONFIG.redes).forEach(([nombre, url]) => {
 document.querySelectorAll('[data-ir-home]').forEach(el => {
   el.addEventListener('click', (e) => { e.preventDefault(); irAHome(); });
 });
+
+// Botón de música: ícono inicial + alternar
+const btnMusica = document.getElementById('btn-musica');
+btnMusica.textContent = musicaActiva ? '🔊 MÚSICA' : '🔇 MÚSICA';
+btnMusica.addEventListener('click', () => {
+  if (!audioCtx) initAudio();
+  if (!musicaGain) iniciarMusica();
+  alternarMusica();
+});
+
 document.querySelectorAll('.navbar-link').forEach(el => {
   el.addEventListener('mouseenter', sndHover);
 });

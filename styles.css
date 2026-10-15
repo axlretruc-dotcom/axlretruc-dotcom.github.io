@@ -561,6 +561,28 @@ footer a:hover { color: var(--primario); }
 .fondo-niebla::after { animation-duration: 19s; animation-direction: alternate-reverse; opacity: .8; }
 @keyframes niebla-drift { from { transform: translateX(-4%) scale(1); } to { transform: translateX(4%) scale(1.06); } }
 
+/* PAPEL PLEASE — fondo celeste con Sol de Mayo girando */
+.fondo-sol {
+  background:
+    radial-gradient(ellipse at 50% 118%, rgba(255,210,74,.30), transparent 55%),
+    linear-gradient(#0a1e3d, #061226 75%);
+}
+.fondo-sol::before {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 112%;
+  width: 1500px;
+  height: 1500px;
+  transform: translate(-50%, -50%);
+  background: repeating-conic-gradient(from 0deg, rgba(255,210,74,.17) 0deg 8deg, transparent 8deg 16deg);
+  -webkit-mask-image: radial-gradient(circle, #000 8%, transparent 58%);
+  mask-image: radial-gradient(circle, #000 8%, transparent 58%);
+  animation: sol-girar 70s linear infinite;
+}
+@keyframes sol-girar { to { transform: translate(-50%, -50%) rotate(360deg); } }
+
+
 /* ══════════════════ RESPONSIVE ══════════════════ */
 @media (max-width: 640px) {
   #navbar-enlaces .navbar-link[data-destacado] { display: none; }
