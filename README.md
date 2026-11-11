@@ -1,10 +1,9 @@
-# 🎮 Portafolio de Juegos — "cada juego, un mundo distinto"
+# 🎮 LUMA GAMES — catálogo de juegos
 
-Landing page estática (HTML + CSS + JS vanilla, **3 archivos, sin frameworks ni
-builds**) donde cada juego tiene su propia sala con estética propia: al entrar,
-cambian colores, tipografía, fondo animado y sonidos. Inspirada en la estructura
-de [letradelta.github.io/Spanish](https://letradelta.github.io/Spanish/):
-publicable gratis en GitHub Pages.
+Portal estático (HTML + CSS + JS vanilla, sin frameworks ni builds) con juegos
+destacados, populares, filtros por género y búsqueda. Los juegos web se pueden
+jugar dentro del portal en una sala adaptable, con un enlace para abrirlos en
+otra pestaña; los juegos descargables conservan su sala e información.
 
 ## ▶ Cómo verla
 
@@ -19,6 +18,8 @@ game-portfolio/
 ├── styles.css      ← estilos, temas y fondos animados
 ├── app.js          ← ★ ACÁ VIVEN TUS JUEGOS (CONFIG + lista JUEGOS)
 ├── favicon.svg
+├── descargas/
+│   ├── B.O.L.U.D.O.zip
 ├── robots.txt      ← editar TU_DOMINIO antes de publicar
 ├── sitemap.xml     ← editar TU_DOMINIO antes de publicar
 ├── img/
@@ -36,18 +37,29 @@ Estudio, tagline, link base de descargas (`buildPorDefecto`, idealmente un
 [GitHub Release](https://github.com/tu-usuario/tu-repo/releases/latest)) y redes.
 
 ### 2. Tus juegos — lista `JUEGOS` en `app.js`
-Para agregar un juego: copiá un bloque `{ ... }` completo, pegalo antes del
-comentario final de la lista y editalo. Cada juego define:
+Para agregar un juego: copiá un bloque `{ ... }` completo, pegalo en la lista y
+editá sus datos. Los juegos con `url` se muestran dentro de la sala mediante un
+iframe; los que solo tienen `build` conservan la sala y descarga.
 
 | Campo | Qué es |
 |---|---|
 | `id` | sin espacios ni ñ (identificador) |
-| `titulo`, `tagline`, `descripcion` | textos de la sala |
-| `generos`, `plataforma`, `tamano` | chips y metadatos |
+| `titulo`, `tagline`, `descripcion` | textos de tarjeta y sala |
+| `generos`, `plataforma`, `tamano` | filtros, chips y metadatos |
+| `url` | dirección del juego web (opcional) |
+| `portada`, `portadaClase` | imagen de tarjeta y fondo de respaldo |
+| `popular`, `destacado`, `badge` | presencia en secciones y etiqueta |
 | `capturas` | rutas a imágenes (ideal 16:9, ej. 1280×720) |
 | `requisitos` | `{ min: [...], rec: [...] }` (opcional) |
 | `build` | `{ url, etiqueta }` del botón de descarga (opcional) |
 | `tema` | **lo que cambia la estética**: paleta, fuentes y fondo |
+
+El catálogo incluye los juegos web **Breachpoint** y **Larry 2.0**, y conserva
+**B.O.L.U.D.O** y **The Nightmare True Live** como juegos descargables. El ZIP de
+**B.O.L.U.D.O** está en `descargas/`; **The Nightmare True Live** se descarga
+desde Google Drive. Descargá los archivos de la carpeta y mantené el `.exe` y
+el `.pck` juntos al ejecutarlo. Así el archivo grande no necesita estar
+dentro del repositorio de GitHub Pages.
 
 ### 3. Fondos animados por tema — en `styles.css`
 Viene `fondo-grid` (synthwave) y `fondo-niebla` (terror). Para crear otro:
@@ -105,8 +117,8 @@ const sndHover = () => new Audio('SFX/tu-hover.wav').play().catch(() => {});
 
 - **Escritorio**: las descargas son de escritorio; en móvil aparece un aviso
   automático en cada sala.
-- **Teclado**: en el menú, `↑ ↓` para moverse, `Enter` para entrar, `Esc`
-  para volver del juego o cerrar una captura ampliada.
+- **Teclado**: los controles del catálogo son botones y enlaces accesibles;
+  `Esc` vuelve desde la sala de un juego o cierra una captura ampliada.
 - **Movimiento reducido**: si el sistema pide menos animaciones, se respetan.
 - Material con derechos de terceros (música, fuentes, arte): solo usá lo que
   tengas derecho a usar (propio, CC0, o con licencia que lo permita).

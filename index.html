@@ -4,30 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <!-- ====== SEO: editá el título y la descripción con tu información ====== -->
-  <title>LUMA GAMES — Juegos indie</title>
-  <meta name="description" content="Portafolio de juegos indie de LUMA GAMES. Cada juego, un mundo distinto. Descargas gratuitas de escritorio.">
+  <title>LUMA GAMES — Juegos gratis para jugar online</title>
+  <meta name="description" content="Descubrí juegos gratis para jugar online. Explorá FPS, arcade y más en LUMA GAMES.">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#050507">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
   <link rel="stylesheet" href="styles.css">
   <!-- ====== Open Graph: cuando tengas tu dominio, descomentá y completá ======
   <meta property="og:type" content="website">
-  <meta property="og:title" content="LUMA GAMES — Juegos indie">
-  <meta property="og:description" content="Portafolio de juegos indie. Cada juego, un mundo distinto.">
+  <meta property="og:title" content="LUMA GAMES — Juegos gratis para jugar online">
+  <meta property="og:description" content="Descubrí juegos gratis para jugar online en LUMA GAMES.">
   <meta property="og:image" content="https://tudominio/img/og.png">
   <meta property="og:url" content="https://tudominio/">
   ====================================================================== -->
 </head>
-<body class="bloquear-scroll">
+<body>
 
   <canvas id="void-canvas" aria-hidden="true"></canvas>
-
-  <!-- ══════════════ SPLASH DE ENTRADA ══════════════ -->
-  <div id="splash" role="button" tabindex="0" aria-label="Entrar al sitio">
-    <div class="splash-titulo" id="splash-titulo">LUMA GAMES</div>
-    <div class="splash-sub">juegos hechos con amor · un género por vez</div>
-    <div class="splash-entrada">— HACÉ CLIC O PRESIONÁ CUALQUIER TECLA PARA ENTRAR —</div>
-  </div>
 
   <!-- ══════════════ TRANSICIÓN ENTRE SALAS ══════════════ -->
   <div id="transicion" aria-hidden="true">
@@ -37,43 +30,94 @@
   </div>
 
   <!-- ══════════════ NAVBAR ══════════════ -->
-  <nav id="main-navbar" aria-label="Navegación principal">
+  <nav id="main-navbar" class="visible" aria-label="Navegación principal">
     <a id="navbar-marca" href="#" data-ir-home>LUMA GAMES</a>
     <div id="navbar-enlaces">
-      <button class="navbar-link" data-ir-home data-destacado>INICIO</button>
+      <a class="navbar-link" href="#juegos">JUEGOS</a>
       <a class="navbar-link" href="#seccion-sobre">SOBRE</a>
       <a class="navbar-link" href="#seccion-contacto">CONTACTO</a>
       <button class="navbar-link" id="btn-musica" aria-label="Activar o desactivar la música">🔊 MÚSICA</button>
-
     </div>
   </nav>
 
   <main id="app">
     <!-- ══════════════ PÁGINA: HOME ══════════════ -->
     <section class="page active" id="page-home">
-      <div class="home-contenido">
-        <h1 class="home-logo" id="home-logo">LUMA GAMES</h1>
-        <p class="home-tagline" id="home-tagline">Cada juego, un mundo distinto.</p>
+      <div class="catalogo">
+        <header class="portal-hero">
+          <div class="hero-copy">
+            <p class="hero-eyebrow"><span class="estado-en-vivo"></span> JUEGOS GRATIS · JUGÁ EN TU NAVEGADOR</p>
+            <h1 class="home-logo" id="home-logo">LUMA GAMES</h1>
+            <p class="home-tagline" id="home-tagline">Cada juego, un mundo distinto.</p>
+            <a class="btn-explorar" href="#juegos">EXPLORAR JUEGOS <span aria-hidden="true">↓</span></a>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <span class="hero-orbita orbita-1"></span>
+            <span class="hero-orbita orbita-2"></span>
+            <span class="hero-planeta"></span>
+            <span class="hero-dado">✦</span>
+          </div>
+        </header>
 
-        <p class="home-subtitulo">— Elegí un juego —</p>
-        <!-- Los botones de juegos se generan desde el array JUEGOS (app.js) -->
-        <div id="menu-juegos"></div>
+        <section class="catalogo-seccion destacado-seccion" aria-labelledby="destacado-titulo">
+          <div class="seccion-cabecera">
+            <div>
+              <p class="seccion-kicker">UNA RECOMENDACIÓN PARA VOS</p>
+              <h2 id="destacado-titulo">Juego destacado</h2>
+            </div>
+          </div>
+          <div id="destacado-juego"></div>
+        </section>
 
-        <div class="home-notas">
-          <span id="home-nota-plataforma">DESCARGAS PARA WINDOWS Y LINUX · GRATIS</span><br>
-          USÁ LAS FLECHAS ↑ ↓ Y ENTER PARA NAVEGAR
-        </div>
-      </div>
+        <section class="catalogo-seccion" id="populares" aria-labelledby="populares-titulo">
+          <div class="seccion-cabecera">
+            <div>
+              <p class="seccion-kicker">LO BUENO SE COMPARTE</p>
+              <h2 id="populares-titulo">Populares ahora <span aria-hidden="true">↗</span></h2>
+            </div>
+            <a class="ver-todos" href="#juegos">Ver todos <span aria-hidden="true">→</span></a>
+          </div>
+          <div id="juegos-populares" class="juegos-grid"></div>
+        </section>
 
-      <div class="seccion-estatica reveal" id="seccion-sobre">
-        <h2>SOBRE EL ESTUDIO</h2>
-        <p id="sobre-texto"></p>
-      </div>
+        <section class="catalogo-seccion generos-seccion" aria-labelledby="generos-titulo">
+          <div class="seccion-cabecera">
+            <div>
+              <p class="seccion-kicker">¿QUÉ TE PINTA JUGAR?</p>
+              <h2 id="generos-titulo">Explorá por género</h2>
+            </div>
+          </div>
+          <div id="filtros-genero" class="generos-lista" aria-label="Filtrar juegos por género"></div>
+        </section>
 
-      <div class="seccion-estatica reveal" id="seccion-contacto">
-        <h2>CONTACTO</h2>
-        <p id="contacto-texto"></p>
-        <ul class="redes-lista" id="redes-lista"></ul>
+        <section class="catalogo-seccion biblioteca-seccion" id="juegos" aria-labelledby="biblioteca-titulo">
+          <div class="seccion-cabecera biblioteca-cabecera">
+            <div>
+              <p class="seccion-kicker">TU PRÓXIMA PARTIDA EMPIEZA ACÁ</p>
+              <h2 id="biblioteca-titulo">Todos los juegos <span id="contador-juegos"></span></h2>
+            </div>
+            <label class="buscador-juegos">
+              <span aria-hidden="true">⌕</span>
+              <input id="busqueda-juegos" type="search" placeholder="Buscar juegos..." autocomplete="off" aria-label="Buscar juegos">
+            </label>
+          </div>
+          <div id="filtros-activos" class="filtros-activos" aria-live="polite"></div>
+          <div id="menu-juegos" class="juegos-grid"></div>
+          <p id="sin-resultados" class="sin-resultados" hidden>No encontramos juegos con esa búsqueda. Probá con otro nombre o género.</p>
+        </section>
+
+        <section class="catalogo-seccion seccion-estatica reveal" id="seccion-sobre">
+          <p class="seccion-kicker">DE QUÉ VA ESTE LUGAR</p>
+          <h2>SOBRE EL ESTUDIO</h2>
+          <p id="sobre-texto"></p>
+        </section>
+
+        <section class="catalogo-seccion seccion-estatica reveal" id="seccion-contacto">
+          <p class="seccion-kicker">¿TENÉS UNA IDEA O ENCONTRASTE UN BUG?</p>
+          <h2>CONTACTO</h2>
+          <p id="contacto-texto"></p>
+          <ul class="redes-lista" id="redes-lista"></ul>
+        </section>
       </div>
     </section>
 

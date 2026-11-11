@@ -4,24 +4,14 @@
    ════════════════════════════════════════════════════════════ */
 const CONFIG = {
   estudio: 'LUMA GAMES',                              // nombre del estudio
-  tagline: 'Cada juego, un mundo distinto.',
-  notaPlataforma: 'WINDOWS · GRATIS · ~4 MB · HECHO CON MATE',
-  splashSub: 'juegos hechos con amor · un género por vez',
-  sobreTexto: 'Somos un estudio independiente que hace juegos de géneros muy distintos entre sí: ' +
-              'si un día es un arcade frenético, al siguiente es una historia tranquila en un bosque. ' +
-              'Esta página es la puerta de entrada a todos ellos.',
+  tagline: 'Encontrá tu próximo juego favorito y empezá a jugar.',
+  sobreTexto: 'Un catálogo para descubrir juegos hechos con identidad propia y jugar sin vueltas. ' +
+              'Explorá por género, encontrá algo nuevo y abrilo directamente desde tu navegador.',
   contactoTexto: '¿Ideas, bugs o ganas de charlar? Escribinos por donde te quede más cómodo.',
   // Link base de descargas por defecto (GitHub Releases recomendado).
   // Podés pisarlo juego por juego en su campo "build".
   buildPorDefecto: 'https://github.com/TU_USUARIO/TU_REPO/releases/latest',
-  redes: {
-    // Poné tu link real o borrá la línea para ocultarla
-    'itch.io':   'https://tuestudio.itch.io',
-    'YouTube':   'https://youtube.com/@tucanal',
-    'Twitter/X': 'https://x.com/tucuenta',
-    'Discord':   'https://discord.gg/tudiscord',
-    'Email':     'mailto:hola@ejemplo.com'
-  }
+  redes: {}
 };
 
 /* ════════════════════════════════════════════════════════════
@@ -33,8 +23,10 @@ const CONFIG = {
         tagline     → una línea corta
         generos     → lista de géneros (chips)
         plataforma  → texto libre, ej: "Windows · Linux"
+        url         → dirección del juego web para mostrarlo en la sala (opcional)
         tamano      → texto libre, ej: "~80 MB"
         descripcion → párrafo de la sala
+        portadaClase → clase visual de respaldo de la portada
         capturas    → rutas a imágenes (ideal 16:9, ej 1280x720)
         requisitos  → { min: [...], rec: [...] }   (opcional)
         build       → { url, etiqueta }            (opcional)
@@ -45,10 +37,53 @@ const CONFIG = {
    ════════════════════════════════════════════════════════════ */
 const JUEGOS = [
   {
+    id: 'breachpoint',
+    titulo: 'Breachpoint',
+    tagline: 'Elegí tu agente y enfrentate a la escuadra rebelde.',
+    generos: ['Acción', 'FPS', 'Táctico'],
+    plataforma: 'Navegador',
+    descripcion: 'Un FPS táctico hecho por Creevo: elegí tu agente y luchá contra la escuadra rebelde.',
+    url: 'https://play.creevo.app/game/89b05f09-ed2e-43da-ae23-70851558dbae',
+    portadaClase: 'arte-breachpoint',
+    badge: 'FPS táctico',
+    destacado: true,
+    popular: true
+  },
+  {
+    id: 'larry-20',
+    titulo: 'Larry 2.0',
+    tagline: 'Dale play y descubrí Larry 2.0.',
+    generos: ['Casual', 'Arcade'],
+    plataforma: 'Navegador',
+    descripcion: 'Larry 2.0 es un juego web para abrir y jugar directamente en el navegador.',
+    url: 'https://larry20.netlify.app/',
+    portadaClase: 'arte-larry',
+    badge: 'Para jugar online',
+    popular: true
+  },
+  {
+    id: 'the-nightmare-true-live',
+    titulo: 'The Nightmare True Live',
+    tagline: 'Sobreviví a tu peor pesadilla en esta aventura de terror para Windows.',
+    generos: ['Terror', 'Aventura'],
+    plataforma: 'Windows',
+    tamano: '~217 MB · Google Drive',
+    descripcion: 'Una aventura de terror para Windows. Descargá desde Google Drive los archivos del juego y guardalos juntos en una misma carpeta. Ejecutá The Nightmare True Live.exe; el archivo .pck debe permanecer junto al ejecutable.',
+    portadaClase: 'arte-nightmare',
+    badge: 'Terror · Windows',
+    build: {
+      url: 'https://drive.google.com/drive/folders/1SB0k0bx727EZ8TpKuFySG-V-KyWGeiWI?usp=drive_link',
+      etiqueta: 'DESCARGAR DESDE GOOGLE DRIVE',
+      externo: true
+    }
+  },
+  {
     id: 'boludo',
     titulo: 'B.O.L.U.D.O',
     tagline: 'Aprobá o rechazá el trámite: la patria depende de tu sello (y del mate).',
     generos: ['Simulación', 'Humor', 'Burocracia'],
+    portadaClase: 'arte-boludo',
+    badge: 'Descarga gratis',
     plataforma: 'Windows',
     tamano: '~4 MB',
     descripcion: 'Montevideo, una oficina que no figura en ningún organigrama. Sos el último funcionario ' +
@@ -62,7 +97,7 @@ const JUEGOS = [
       rec: ['Mate (opcional pero muy recomendado)', 'Un sello con tinta real para la inmersión total']
     },
     build: {
-      url: 'https://github.com/axlretruc-dotcom/axlretruc-dotcom.github.io/raw/main/descargas/B.O.L.U.D.O.zip',
+      url: 'descargas/B.O.L.U.D.O.zip',
       etiqueta: 'DESCARGAR B.O.L.U.D.O'
     },
     tema: {
@@ -107,32 +142,6 @@ function tono(freq, dur, tipo, vol, retardo) {
 const sndHover  = () => tono(660, 0.06, 'square', 0.035);
 const sndSelect = () => { tono(440, 0.08, 'square', 0.05); tono(880, 0.12, 'square', 0.05, 0.08); };
 const sndVolver = () => { tono(520, 0.08, 'square', 0.045); tono(330, 0.12, 'square', 0.045, 0.08); };
-
-/* ════════════════════════════════════════════════════════════
-   4) SPLASH DE ENTRADA
-   ════════════════════════════════════════════════════════════ */
-const splash = document.getElementById('splash');
-let splashListo = false;
-
-function entrarAlSitio() {
-  if (splashListo) return;
-  splashListo = true;
-  initAudio();
-  sndSelect();
-  iniciarMusica();
-  splash.style.transition = 'opacity .7s ease';
-  splash.style.opacity = '0';
-  document.body.classList.remove('bloquear-scroll');
-  setTimeout(() => splash.remove(), 750);
-  document.getElementById('main-navbar').classList.add('visible');
-}
-splash.addEventListener('click', entrarAlSitio);
-splash.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); entrarAlSitio(); }
-});
-window.addEventListener('keydown', (e) => {
-  if (!splashListo) { entrarAlSitio(); e.preventDefault(); }
-});
 
 /* ════════════════════════════════════════════════════════════
    4b) MÚSICA DE FONDO — loop procedural estilo "cumbia
@@ -359,7 +368,10 @@ function irAJuego(id) {
 /* ════════════════════════════════════════════════════════════
    7) RENDER DE LA SALA DEL JUEGO
    ════════════════════════════════════════════════════════════ */
-function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+function esc(s) {
+  return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+}
 
 function renderSala(j) {
   const build = j.build || { url: CONFIG.buildPorDefecto, etiqueta: 'DESCARGAR' };
@@ -368,19 +380,34 @@ function renderSala(j) {
   const html = `
     <div class="sala">
       <div class="sala-hero">
-        <div class="sala-fondo ${j.tema.fondoClase || ''}"></div>
+        <div class="sala-fondo ${j.tema ? j.tema.fondoClase || '' : ''}"></div>
         <div class="sala-generos">${j.generos.map(g => `<span class="chip">${esc(g)}</span>`).join('')}</div>
         <h1 class="sala-titulo">${esc(j.titulo)}</h1>
         <p class="sala-tagline">${esc(j.tagline)}</p>
         <div class="sala-meta">
           <span>${esc(j.plataforma)}</span>
           <span>${esc(j.tamano || '')}</span>
-          <span>DESCARGA DIRECTA</span>
+          <span>${j.url ? 'JUEGO WEB' : 'DESCARGA DIRECTA'}</span>
         </div>
       </div>
 
-      <div class="sala-bloque reveal">
-        <h2>EL JUEGO</h2>
+        ${j.url ? `
+        <div class="sala-bloque game-player-bloque">
+          <div class="game-player-cabecera">
+            <div>
+              <p class="seccion-kicker">LISTO PARA JUGAR</p>
+              <h2>Jugá ahora</h2>
+            </div>
+            <a class="game-player-nueva-pestana" href="${esc(j.url)}" target="_blank" rel="noopener noreferrer">Abrir en otra pestaña ↗</a>
+          </div>
+          <div class="game-player">
+            <iframe src="${esc(j.url)}" title="${esc(j.titulo)} — juego" allow="autoplay; fullscreen; gamepad" allowpointerlock loading="eager" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+          </div>
+          <p class="game-player-nota">Si el juego no carga dentro del portal, probá abrirlo en una pestaña nueva.</p>
+        </div>` : ''}
+
+        <div class="sala-bloque reveal">
+          <h2>EL JUEGO</h2>
         <p>${esc(j.descripcion).replace(/\n/g, '<br>')}</p>
       </div>
 
@@ -401,13 +428,13 @@ function renderSala(j) {
         </div>
       </div>` : ''}
 
-      <div class="sala-bloque reveal">
+      ${!j.url ? `<div class="sala-bloque reveal">
         <div class="bloque-descarga">
           <div class="aviso-movil">⚠ Este juego es de escritorio. Podés descargarlo igual desde tu PC o mandarte el link a tu mail.</div>
-          <a class="btn-descarga" href="${esc(build.url)}" target="_blank" rel="noopener">${esc(build.etiqueta || 'DESCARGAR')}</a>
-          <p class="descarga-nota">${esc(j.plataforma)} · ${esc(j.tamano || '')} · el link abre en una pestaña nueva</p>
+          <a class="btn-descarga" href="${esc(build.url)}"${build.externo ? ' target="_blank" rel="noopener noreferrer"' : ' download'}>${esc(build.etiqueta || 'DESCARGAR')}</a>
+          <p class="descarga-nota">${esc(j.plataforma)} · ${esc(j.tamano || '')} · mantené el .exe y el .pck en la misma carpeta</p>
         </div>
-      </div>
+      </div>` : ''}
 
       <button class="btn-volver" id="btn-volver">◀ VOLVER AL MENÚ</button>
     </div>`;
@@ -428,27 +455,129 @@ const lightbox = document.getElementById('lightbox');
 lightbox.addEventListener('click', () => lightbox.classList.remove('abierto'));
 
 /* ════════════════════════════════════════════════════════════
-   8) ARMADO DEL HOME (botones, textos, redes, footer)
+   8) CATÁLOGO (destacado, populares, géneros y búsqueda)
    ════════════════════════════════════════════════════════════ */
 const menuJuegos = document.getElementById('menu-juegos');
-JUEGOS.forEach(j => {
-  const btn = document.createElement('button');
-  btn.className = 'nav-button';
-  btn.id = 'btn-' + j.id;
-  btn.innerHTML = `<span>${esc(j.titulo)}</span><span class="btn-genero">${esc(j.generos.join(' · '))}</span>`;
-  btn.addEventListener('click', () => irAJuego(j.id));
-  btn.addEventListener('mouseenter', sndHover);
-  btn.addEventListener('focus', sndHover);
-  menuJuegos.appendChild(btn);
-});
+const juegosPopulares = document.getElementById('juegos-populares');
+const filtrosGenero = document.getElementById('filtros-genero');
+const busquedaJuegos = document.getElementById('busqueda-juegos');
+const sinResultados = document.getElementById('sin-resultados');
+let generoActivo = 'Todos';
+
+function accionJuego(j, clase) {
+  if (j.url) {
+    return `<button class="${clase}" type="button" data-abrir-juego="${esc(j.id)}">JUGAR AHORA <span aria-hidden="true">▶</span></button>`;
+  }
+  if (j.build) {
+    const externo = j.build.externo
+      ? ' target="_blank" rel="noopener noreferrer"'
+      : ' download';
+    return `<a class="${clase} juego-accion-descarga" href="${esc(j.build.url)}"${externo}>${esc(j.build.etiqueta || 'DESCARGAR')} <span aria-hidden="true">↓</span></a>`;
+  }
+  return `<button class="${clase}" type="button" data-abrir-juego="${esc(j.id)}">VER JUEGO <span aria-hidden="true">→</span></button>`;
+}
+
+function portadaJuego(j, clase) {
+  const imagen = j.portada
+    ? `<img src="${esc(j.portada)}" alt="" loading="lazy" onerror="this.remove()">`
+    : '';
+  return `<div class="${clase} ${esc(j.portadaClase || '')}" aria-hidden="true">
+    ${j.badge ? `<span class="juego-badge">${esc(j.badge)}</span>` : ''}
+    ${imagen}
+  </div>`;
+}
+
+function tarjetaJuego(j) {
+  const article = document.createElement('article');
+  article.className = 'juego-card';
+  article.innerHTML = `
+    ${portadaJuego(j, 'juego-arte')}
+    <div class="juego-info">
+      <h3>${esc(j.titulo)}</h3>
+      <p>${esc(j.tagline)}</p>
+      <div class="juego-generos">${j.generos.map(g => `<span>${esc(g)}</span>`).join('')}</div>
+      ${accionJuego(j, `juego-accion${j.url ? '' : ' juego-accion-secundaria'}`)}
+      ${j.build ? `<button class="juego-detalles" type="button" data-abrir-juego="${esc(j.id)}">Ver detalles</button>` : ''}
+    </div>`;
+  article.querySelector('[data-abrir-juego]')?.addEventListener('click', () => irAJuego(j.id));
+  article.addEventListener('mouseenter', sndHover);
+  return article;
+}
+
+function renderCatalogo() {
+  const destacados = JUEGOS.filter(j => j.popular);
+  destacados.forEach(j => juegosPopulares.appendChild(tarjetaJuego(j)));
+
+  const destacado = JUEGOS.find(j => j.destacado) || JUEGOS[0];
+  if (destacado) {
+    document.getElementById('destacado-juego').innerHTML = `
+      <article class="destacado-juego">
+        <div class="destacado-info">
+          <span class="destacado-label">✦ DESTACADO</span>
+          <h3>${esc(destacado.titulo)}</h3>
+          <p>${esc(destacado.descripcion)}</p>
+          <div class="destacado-meta">
+            ${destacado.generos.map(g => `<span>${esc(g)}</span>`).join('')}
+            <span>${esc(destacado.plataforma)}</span>
+          </div>
+          ${accionJuego(destacado, 'destacado-accion')}
+        </div>
+        ${portadaJuego(destacado, 'destacado-arte')}
+      </article>`;
+    document.querySelector('#destacado-juego [data-abrir-juego]')
+      ?.addEventListener('click', () => irAJuego(destacado.id));
+  }
+
+  const generos = Array.from(new Set(JUEGOS.flatMap(j => j.generos)));
+  const opciones = ['Todos', ...generos];
+  opciones.forEach(genero => {
+    const cantidad = genero === 'Todos'
+      ? JUEGOS.length
+      : JUEGOS.filter(j => j.generos.includes(genero)).length;
+    const boton = document.createElement('button');
+    boton.type = 'button';
+    boton.className = `filtro-genero${genero === generoActivo ? ' activo' : ''}`;
+    boton.dataset.genero = genero;
+    boton.setAttribute('aria-pressed', genero === generoActivo ? 'true' : 'false');
+    boton.innerHTML = `${esc(genero)} <span class="genero-cantidad">${cantidad}</span>`;
+    boton.addEventListener('click', () => {
+      generoActivo = genero;
+      renderFiltrosGenero();
+      filtrarJuegos();
+    });
+    filtrosGenero.appendChild(boton);
+  });
+  renderFiltrosGenero();
+  filtrarJuegos();
+}
+
+function renderFiltrosGenero() {
+  filtrosGenero.querySelectorAll('.filtro-genero').forEach(boton => {
+    const activo = boton.dataset.genero === generoActivo;
+    boton.classList.toggle('activo', activo);
+    boton.setAttribute('aria-pressed', activo ? 'true' : 'false');
+  });
+}
+
+function filtrarJuegos() {
+  const texto = busquedaJuegos.value.trim().toLocaleLowerCase('es');
+  const visibles = JUEGOS.filter(j => {
+    const coincideGenero = generoActivo === 'Todos' || j.generos.includes(generoActivo);
+    const coincideTexto = `${j.titulo} ${j.tagline} ${j.generos.join(' ')}`.toLocaleLowerCase('es').includes(texto);
+    return coincideGenero && coincideTexto;
+  });
+  menuJuegos.replaceChildren(...visibles.map(tarjetaJuego));
+  document.getElementById('contador-juegos').textContent = `(${visibles.length})`;
+  sinResultados.hidden = visibles.length > 0;
+}
+
+busquedaJuegos.addEventListener('input', filtrarJuegos);
+renderCatalogo();
 
 // Textos desde CONFIG
-document.getElementById('splash-titulo').textContent = CONFIG.estudio;
-document.querySelector('#splash .splash-sub').textContent = CONFIG.splashSub;
 document.getElementById('home-logo').textContent = CONFIG.estudio;
 document.getElementById('navbar-marca').textContent = CONFIG.estudio;
 document.getElementById('home-tagline').textContent = CONFIG.tagline;
-document.getElementById('home-nota-plataforma').textContent = CONFIG.notaPlataforma;
 document.getElementById('sobre-texto').textContent = CONFIG.sobreTexto;
 document.getElementById('contacto-texto').textContent = CONFIG.contactoTexto;
 document.getElementById('footer-texto').innerHTML =
@@ -504,29 +633,11 @@ document.querySelectorAll('.navbar-link[href^="#"]').forEach(link => {
   });
 });
 
-// Teclado: Esc para volver, ↑ ↓ Enter en el menú (estilo Deltarune)
+// Teclado: Esc para volver o cerrar una captura ampliada.
 window.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') {
     if (lightbox.classList.contains('abierto')) { lightbox.classList.remove('abierto'); return; }
     if (juegoActual) irAHome();
-    return;
-  }
-  if (!pageHome.classList.contains('active') || !splashListo) return;
-  const botones = Array.from(menuJuegos.querySelectorAll('.nav-button'));
-  if (!botones.length) return;
-  let idx = botones.indexOf(document.activeElement);
-  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
-    e.preventDefault();
-    idx = e.key === 'ArrowDown'
-      ? (idx + 1) % botones.length
-      : (idx <= 0 ? botones.length - 1 : idx - 1);
-    botones.forEach(b => b.classList.remove('teclado-seleccion'));
-    botones[idx].classList.add('teclado-seleccion');
-    botones[idx].focus({ preventScroll: false });
-    sndHover();
-  } else if (e.key === 'Enter' && idx >= 0) {
-    e.preventDefault();
-    botones[idx].click();
   }
 });
 
@@ -548,10 +659,3 @@ observarReveals(pageHome);
 if (/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent)) {
   document.body.classList.add('es-movil');
 }
-
-
-
-
-
-
-
