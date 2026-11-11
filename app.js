@@ -52,10 +52,10 @@ const JUEGOS = [
   {
     id: 'larry-20',
     titulo: 'Larry 2.0',
-    tagline: 'Dale play y descubrí Larry 2.0.',
+    tagline: 'Conocé a Larry y enfrentate junto a él a hordas de enemigos.',
     generos: ['Casual', 'Arcade'],
     plataforma: 'Navegador',
-    descripcion: 'Larry 2.0 es un juego web para abrir y jugar directamente en el navegador.',
+    descripcion: 'Conocé a Larry, un personaje de un mundo top-down pixelado, y enfrentate junto a él a hordas de enemigos.',
     url: 'https://larry20.netlify.app/',
     portadaClase: 'arte-larry',
     badge: 'Para jugar online',
@@ -64,11 +64,11 @@ const JUEGOS = [
   {
     id: 'the-nightmare-true-live',
     titulo: 'The Nightmare True Live',
-    tagline: 'Sobreviví a tu peor pesadilla en esta aventura de terror para Windows.',
+    tagline: 'Una pesadilla sin fin, donde hasta tus propios gritos se ahogan.',
     generos: ['Terror', 'Aventura'],
     plataforma: 'Windows',
     tamano: '~217 MB · Google Drive',
-    descripcion: 'Una aventura de terror para Windows. Descargá desde Google Drive los archivos del juego y guardalos juntos en una misma carpeta. Ejecutá The Nightmare True Live.exe; el archivo .pck debe permanecer junto al ejecutable.',
+    descripcion: 'Explorá los modos Arcade y Story para descubrir la verdad detrás de la pesadilla. Para jugar en Windows, descargá desde Google Drive los archivos del juego y guardalos juntos en una misma carpeta. Ejecutá The Nightmare True Live.exe; el archivo .pck debe permanecer junto al ejecutable.',
     portadaClase: 'arte-nightmare',
     badge: 'Terror · Windows',
     build: {
